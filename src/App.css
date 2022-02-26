@@ -1,38 +1,182 @@
-.App {
-  text-align: center;
+.app {
+  display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.textColorDark {
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.borderColorDark {
+  border: 1px white solid;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header__text {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.sideBar {
+  width: 296px;
+  min-width: 50px;
+  border-right: 1px grey solid;
+  height: 100vh;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.error-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 296px);
+  padding: 16px;
+}
+
+.link-element {
+  color: black;
+  text-decoration: none;
+}
+
+.mainHome,
+.mainProduct {
+  position: fixed;
+  bottom: 0;
+  height: calc(100vh - 100px);
+  width: calc(100% - 296px);
+  right: 0;
+  overflow-x: auto;
+  padding: 0px 16px;
+}
+
+.header-container-view {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Fondo dark mode side bar */
+
+.sideBarDark {
+  width: 296px;
+  min-width: 50px;
+  height: 100vh;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #313131;
+}
+
+.nav-link-dark {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.icon-container-dark {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.text-user-dark {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.darkModeButton-dark {
+  padding: 10px;
+  border: 1px solid white;
+  text-align: center;
+  background-color: #414141;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.link-user-dark {
+  text-decoration: none;
+  color: black;
+  border: 1px solid white;
+}
+
+/* Fondo dark mode side bar */
+
+/* Estilos de la pagina error 404 */
+.error-container-dark {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #414141;
+}
+
+.main-container-dark {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 296px);
+  padding: 16px;
+  background-color: #414141;
+}
+
+.header__text-dark {
+  font-weight: bold;
+  font-size: 40px;
+  color: white;
+}
+
+/* Modo oscuro pagina del error 404 */
+
+.title-404 {
+  color: white;
+}
+
+/* Pagina del error 404 */
+
+/* Pagina de los productos en darkmode */
+.add-product-button {
+  padding: 8px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 16px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.link-element-dark {
+  color: white;
+  text-decoration: none;
+}
+
+.add-product-button-dark {
+  padding: 8px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 16px;
+  border: 1px solid white;
+  background-color: #414141;
+}
+
+/* Pagina de los productos en darkmode */
+
+.button-agregado-dark {
+  padding: 16px;
+  bottom: 0;
+  width: 150px;
+  color: white;
+  border: 1px solid white;
+  background-color: #414141;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
 }

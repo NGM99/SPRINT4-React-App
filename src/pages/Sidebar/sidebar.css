@@ -1,0 +1,78 @@
+.sideBar-topcontent {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+
+.imgcontainer__imglogo {
+  width: 225px;
+  min-width: 50px;
+}
+
+.nav > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav > ul > li {
+  margin: 10px 0 10px 0;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav > ul > li > div > i {
+  font-size: 30px;
+  width: 100px;
+}
+
+.nav > ul > li > i > div {
+  gap: 100px;
+}
+
+.icon-container {
+  width: 50px;
+  text-align: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.darkModeButton {
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar__containeruser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  padding: 6px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.container-user__imgUser {
+  height: 30px;
+  cursor: pointer;
+}
+
+.link-user {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+}
+
+.fa-house {
+  height: 10px;
+  width: 10px;
+}

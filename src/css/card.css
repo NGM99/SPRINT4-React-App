@@ -1,0 +1,152 @@
+.card {
+  margin-top: 10px;
+}
+
+.icon-angle--right {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+/* Estilos del CardHome */
+
+.cardElementHome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 1px solid #000000;
+  margin: 15px 0 15px 0;
+  height: 100px;
+}
+
+.card--container-text {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.card--container-text > i {
+  width: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+.card--text-quantity {
+  width: 70px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.card--text-context {
+  width: 100px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.button-home {
+  margin: 0 5px 0 5px;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+/* Fin estilos del CardHome */
+
+/* Estilos del CardProducts */
+
+.card-container-texts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-container-texts > .image-product-content {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.img-product {
+  height: 85px;
+  border-radius: 10px;
+}
+
+.text-product {
+  font-size: 18px;
+}
+
+/* Fin estilos del CardProducts */
+
+/* Estilos dark del home card */
+
+.cardElementHomeDark {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid white;
+  margin: 15px 0 15px 0;
+  height: 100px;
+}
+
+.logo {
+  color: white;
+}
+
+.card--text-quantity-dark {
+  width: 70px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+}
+
+.card--text-context-dark {
+  width: 100px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+
+.button-home-dark {
+  margin: 0 5px 0 5px;
+  padding: 16px;
+  border: 1px solid white;
+  border-radius: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Estilos dark del home card */
+
+/* Estilos dark del products card */
+
+.cardElementHome-dark {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 1px solid white;
+  margin: 15px 0 15px 0;
+  height: 100px;
+}
+
+.text-product-dark {
+  font-size: 18px;
+  color: white;
+}
+
+.icon-angle--righ-dark {
+  font-size: 30px;
+  margin-right: 10px;
+  color: white;
+}
+
+/* Estilos dark del products card */

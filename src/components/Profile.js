@@ -4,11 +4,10 @@ import "../App.css";
 import error404 from "../assets/img/404-error-not-found.png";
 import { DarkMode } from "../context/DarkModeContext";
 
-export const Error404 = () => {
+export const Profile = () => {
   const { darkMode } = useContext(DarkMode);
-  console.log(darkMode);
   return (
-    <div className='main-container'>
+    <div className={darkMode ? "main-container-dark" : "main-container"}>
       <div className='error-container'>
         <h1 className={darkMode ? "title-404" : ""}>
           Error 404: página no encontrada

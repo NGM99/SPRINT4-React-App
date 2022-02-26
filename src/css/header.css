@@ -1,4 +1,75 @@
 .header {
-  width: 72px;
-  background-color: black;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  padding: 0 16px;
+  right: 0;
+  width: calc(100% - 296px);
+}
+
+.header--products-container {
+  height: 72px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header--container-input {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.form-submit-product {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid black;
+  justify-content: space-between;
+  padding: 8px;
+  width: 300px;
+}
+
+.input-search {
+  border: none;
+  width: 80%;
+  font-size: 16px;
+  outline: none;
+  padding-left: 8px;
+}
+
+.input-search-dark {
+  border: none;
+  width: 80%;
+  font-size: 16px;
+  outline: none;
+  background-color: #414141;
+  padding-left: 8px;
+  color: white;
+}
+
+.form-submit-product-dark {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid white;
+  justify-content: space-between;
+  padding: 8px;
+  width: 300px;
+}
+
+.loop-icon-dark {
+  color: white;
+}
+
+/* Estilos del header ProductNew */
+
+.header-container-new {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }

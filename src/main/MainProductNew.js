@@ -2,9 +2,10 @@ import React, { useState, useContext } from "react";
 import { DarkMode } from "../context/DarkModeContext";
 import "../css/main.css";
 
-export const MainProductsView = () => {
+export const MainProductNew = () => {
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
+  console.log(darkMode);
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export const MainProductsView = () => {
   };
 
   const handleSubmit = (e) => e.preventDefault();
+
   return (
     <div className='mainHome'>
       <h2 className={darkMode ? "h2-text-dark" : "h2-text"}>Informacion</h2>
@@ -123,13 +125,7 @@ export const MainProductsView = () => {
           </label>
           <div>{/* Galeria de imagenes */}</div>
         </div>
-        <div className='container-buttons-view'>
-          <input
-            onSubmit={handleSubmit}
-            type='submit'
-            className={darkMode ? "button-agregado-dark" : "button-agregado"}
-            value='Cancelar'
-          />
+        <div className='container-button-agregar'>
           <input
             onSubmit={handleSubmit}
             type='submit'
