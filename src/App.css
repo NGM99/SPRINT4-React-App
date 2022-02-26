@@ -6,6 +6,10 @@
   color: white;
 }
 
+.icon-menu {
+  display: none;
+}
+
 .borderColorDark {
   border: 1px white solid;
 }
@@ -179,4 +183,40 @@
   text-align: center;
   font-weight: bold;
   font-size: 14px;
+}
+
+.headsito {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .sideBar {
+    display: none;
+  }
+
+  .sideBarDark {
+    display: none;
+  }
+
+  .main-container {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .mainHome,
+  .mainProduct {
+    position: fixed;
+    height: calc(100vh - 100px);
+    width: 100%;
+  }
+
+  .icon-menu {
+    color: black;
+    font-size: 40px;
+    display: block;
+  }
 }

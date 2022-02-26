@@ -5,7 +5,6 @@ import "../css/main.css";
 export const MainProductNew = () => {
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
-  console.log(darkMode);
 
   const handleAdd = (e) => {
     e.preventDefault();

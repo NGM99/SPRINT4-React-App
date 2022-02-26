@@ -16,7 +16,8 @@ const productsIcon = <FontAwesomeIcon icon={faBox} />;
 const storeIcon = <FontAwesomeIcon icon={faShop} />;
 
 export const Sidebar = () => {
-  const { darkMode, setDarkMode } = useContext(DarkMode);
+  const { darkMode, setDarkMode, navbarActive, setNavbarActive } =
+    useContext(DarkMode);
   const [text, setText] = useState("Cambiar a modo oscuro");
 
   const handleOnClickDarkMode = () => {
@@ -26,6 +27,7 @@ export const Sidebar = () => {
       ? setText("Cambiar a modo oscuro")
       : setText("Cambiar a modo claro");
   };
+
   return (
     <div className={darkMode ? "sideBarDark" : "sideBar"}>
       <div className='sideBar-topcontent'>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import "../css/card.css";
 import { DarkMode } from "../context/DarkModeContext";
 import { Link } from "react-router-dom";
@@ -8,7 +8,10 @@ const productsIcon = <FontAwesomeIcon icon={faBox} />;
 const storeIcon = <FontAwesomeIcon icon={faShop} />;
 
 export const CardHome = () => {
+  const title = useRef();
+
   const { darkMode } = useContext(DarkMode);
+
   const cardListHome = [
     {
       logo: productsIcon,
@@ -40,6 +43,7 @@ export const CardHome = () => {
           <div className='card--container-text'>
             <i className={darkMode ? "logo" : ""}>{card.logo}</i>
             <p
+              ref={title}
               className={
                 darkMode ? "card--text-quantity-dark" : "card--text-quantity"
               }
