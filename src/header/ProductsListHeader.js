@@ -1,13 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { Products } from "../context/ProductsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { DarkMode } from "../context/DarkModeContext";
 const lupaIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
 export const ProductsListHeader = () => {
+  const { setFilteredText } = useContext(Products);
+  const inputFilterProducts = useRef();
+
   const { darkMode } = useContext(DarkMode);
+
+  const handleOnChange = () => {
+    setFilteredText(inputFilterProducts.current.value);
+  };
+
   return (
     <>
       <div className='header--products-container'>
@@ -23,6 +32,8 @@ export const ProductsListHeader = () => {
             }
           >
             <input
+              onChange={handleOnChange}
+              ref={inputFilterProducts}
               type='text'
               className={darkMode ? "input-search-dark" : "input-search"}
             />

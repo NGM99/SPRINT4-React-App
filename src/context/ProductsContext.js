@@ -1,25 +1,34 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
-import data from "../utils/data";
 
 export const Products = createContext();
 
 export const ProductsContext = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [productosGenerales, setProductosGenerales] = useState([data]);
+  const [loading, setLoading] = useState(false);
+  const [filteredText, setFilteredText] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3030/products").then((res) => {
-      const productsApi = res.data;
-      setProducts(productsApi);
-    });
+    getAllProducts();
   }, []);
 
-  const productosContext = products;
+  const getAllProducts = async () => {
+    try {
+      const data = await axios
+        .get("http://localhost:3030/products")
+        .then((res) => {
+          const productsApi = res.data;
+          setProducts(productsApi);
+        });
+      setLoading(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Products.Provider
-      value={{ productosContext, productosGenerales, setProductosGenerales }}
+      value={{ products, loading, filteredText, setFilteredText }}
     >
       {children}
     </Products.Provider>
