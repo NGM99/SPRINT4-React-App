@@ -3,7 +3,7 @@ import "./sidebar.css";
 import "../../App.css";
 import imglogo from "../../assets/img/miEcommerce.png";
 import imguser from "../../assets/img/ProfilePic.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouseChimney,
@@ -19,6 +19,35 @@ export const Sidebar = () => {
   const { darkMode, setDarkMode, navbarActive, setNavbarActive } =
     useContext(DarkMode);
   const [text, setText] = useState("Cambiar a modo oscuro");
+  const [backgroundHome, setBackgroundHome] = useState(true);
+  const [backgroundProducts, setBackgroundProducts] = useState(false);
+  const [backgroundStore, setBackgroundStore] = useState(false);
+
+  const handleClickChangeBackgroundColorHomeNav = () => {
+    backgroundHome ? setBackgroundHome(true) : setBackgroundHome(true);
+    setBackgroundProducts(false);
+    setBackgroundStore(false);
+  };
+
+  const handleClickChangeBackgroundColorProductsNav = () => {
+    backgroundProducts
+      ? setBackgroundProducts(true)
+      : setBackgroundProducts(true);
+    setBackgroundHome(false);
+    setBackgroundStore(false);
+  };
+
+  const handleClickChangeBackgroundColorStoresNav = () => {
+    backgroundStore ? setBackgroundStore(true) : setBackgroundStore(true);
+    setBackgroundHome(false);
+    setBackgroundProducts(false);
+  };
+
+  const handleClickChangeBackgroundColorAllNav = () => {
+    setBackgroundHome(false);
+    setBackgroundProducts(false);
+    setBackgroundStore(false);
+  };
 
   const handleOnClickDarkMode = () => {
     setDarkMode(!darkMode);
@@ -37,9 +66,21 @@ export const Sidebar = () => {
         <div className='sidebar__container-nav'>
           <nav className='nav'>
             <ul>
-              <li>
+              <NavLink
+                onClick={handleClickChangeBackgroundColorHomeNav}
+                className={
+                  backgroundHome
+                    ? "side-nav-container bgColorActive"
+                    : "side-nav-container"
+                }
+                to={"/"}
+              >
                 <div className={"icon-container"}>
-                  <i className={darkMode ? "icon-container-dark" : ""}>
+                  <i
+                    className={
+                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                    }
+                  >
                     {homeIcon}
                   </i>
                 </div>
@@ -51,10 +92,22 @@ export const Sidebar = () => {
                     Home
                   </Link>
                 </div>
-              </li>
-              <li>
+              </NavLink>
+              <NavLink
+                onClick={handleClickChangeBackgroundColorProductsNav}
+                className={
+                  backgroundProducts
+                    ? "side-nav-container bgColorActive"
+                    : "side-nav-container"
+                }
+                to={"products"}
+              >
                 <div className='icon-container'>
-                  <i className={darkMode ? "icon-container-dark" : ""}>
+                  <i
+                    className={
+                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                    }
+                  >
                     {productsIcon}
                   </i>
                 </div>
@@ -66,10 +119,22 @@ export const Sidebar = () => {
                     Productos
                   </Link>
                 </div>
-              </li>
-              <li>
+              </NavLink>
+              <NavLink
+                onClick={handleClickChangeBackgroundColorStoresNav}
+                className={
+                  backgroundStore
+                    ? "side-nav-container bgColorActive"
+                    : "side-nav-container"
+                }
+                to={"/stores"}
+              >
                 <div className='icon-container'>
-                  <i className={darkMode ? "icon-container-dark" : ""}>
+                  <i
+                    className={
+                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                    }
+                  >
                     {storeIcon}
                   </i>
                 </div>
@@ -81,7 +146,7 @@ export const Sidebar = () => {
                     Tiendas
                   </Link>
                 </div>
-              </li>
+              </NavLink>
             </ul>
           </nav>
         </div>
@@ -102,6 +167,7 @@ export const Sidebar = () => {
               ? "sidebar__containeruser link-user-dark"
               : "sidebar__containeruser link-user"
           }
+          onClick={handleClickChangeBackgroundColorAllNav}
         >
           <div className='user-container'>
             <div className='sidebar__containeruser'>

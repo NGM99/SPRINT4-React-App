@@ -16,16 +16,26 @@
   justify-content: center;
 }
 
-.nav > ul > li {
+.nav > ul > li > div > i {
+  font-size: 30px;
+  width: 100px;
+}
+
+.side-nav-container {
   margin: 10px 0 10px 0;
   height: auto;
   display: flex;
   align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 12px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 
-.nav > ul > li > div > i {
-  font-size: 30px;
-  width: 100px;
+.bgColorActive {
+  background-color: #e6e6e6;
 }
 
 .nav > ul > li > i > div {
