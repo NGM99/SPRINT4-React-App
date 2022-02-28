@@ -1,10 +1,38 @@
-import React, { useState, useContext } from "react";
+import axios from "axios";
+import React, { useState, useContext, useRef } from "react";
 import { DarkMode } from "../context/DarkModeContext";
 import "../css/main.css";
 
 export const MainProductNew = () => {
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
+  const [object, setObject] = useState({ nom: "", val: "", sto: "", des: "" });
+
+  let nombreInput = useRef();
+  let valorInput = useRef();
+  let stockInput = useRef();
+  let descripcionInput = useRef();
+
+  let nombre;
+  let valor;
+  let stocks;
+  let descripcion;
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:3030/product/new", { nombre: "Alan" })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const handleOnChange = () => {
+    nombre = nombreInput.current.value;
+    valor = valorInput.current.value;
+    stocks = stockInput.current.value;
+    descripcion = descripcionInput.current.value;
+  };
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -23,7 +51,7 @@ export const MainProductNew = () => {
   return (
     <div className='mainHome'>
       <h2 className={darkMode ? "h2-text-dark" : "h2-text"}>Informacion</h2>
-      <form className='from-new-product'>
+      <form className='from-new-product' onSubmit={handleOnSubmit}>
         <div>
           <div className='container-input'>
             <label className={darkMode ? "label-text-dark" : "label-text"}>
@@ -34,6 +62,8 @@ export const MainProductNew = () => {
               className={
                 darkMode ? "input-new-product-dark" : "input-new-product"
               }
+              ref={nombreInput}
+              onChange={handleOnChange}
               placeholder='Input Value'
             />
           </div>
@@ -46,6 +76,8 @@ export const MainProductNew = () => {
               className={
                 darkMode ? "input-new-product-dark" : "input-new-product"
               }
+              ref={valorInput}
+              onChange={handleOnChange}
               placeholder='Input Value'
             />
           </div>
@@ -65,6 +97,8 @@ export const MainProductNew = () => {
               <input
                 type='text'
                 className={darkMode ? "input-stock-dark" : "input-stock"}
+                ref={stockInput}
+                onChange={handleOnChange}
                 value={stock}
               />
               <button
@@ -86,7 +120,9 @@ export const MainProductNew = () => {
                   ? "input-new-product-dark description"
                   : "input-new-product description"
               }
+              ref={descripcionInput}
               placeholder='Input Value'
+              onChange={handleOnChange}
             />
           </div>
           <div className='container-input'>
