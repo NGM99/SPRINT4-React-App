@@ -14,12 +14,10 @@ export const ProductsContext = ({ children }) => {
 
   const getAllProducts = async () => {
     try {
-      const data = await axios
-        .get("http://localhost:3030/products")
-        .then((res) => {
-          const productsApi = res.data;
-          setProducts(productsApi);
-        });
+      await axios.get("http://localhost:3030/productos").then((res) => {
+        const productsApi = res.data;
+        setProducts(productsApi);
+      });
       setLoading(true);
     } catch (error) {
       console.log(error);
@@ -28,7 +26,12 @@ export const ProductsContext = ({ children }) => {
 
   return (
     <Products.Provider
-      value={{ products, loading, filteredText, setFilteredText }}
+      value={{
+        products,
+        loading,
+        filteredText,
+        setFilteredText,
+      }}
     >
       {children}
     </Products.Provider>

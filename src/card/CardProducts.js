@@ -23,6 +23,8 @@ export const CardProducts = () => {
     );
   }
 
+  const urlProduct = "/products/";
+
   if (loading) {
     return (
       <>
@@ -30,7 +32,7 @@ export const CardProducts = () => {
           return (
             <Link
               key={i}
-              to={"/products/:id"}
+              to={urlProduct + product._id}
               className={
                 darkMode
                   ? "cardElementHome-dark link-element"
