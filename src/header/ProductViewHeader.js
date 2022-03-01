@@ -18,9 +18,9 @@ export const ProductViewHeader = () => {
 
   const getProductById = async (id) => {
     try {
-      await axios
-        .get("http://localhost:3030/productos/" + id)
-        .then((res) => setViewProductObject(res.data));
+      await axios.get("http://localhost:3030/productos/" + id).then((res) => {
+        setViewProductObject(res.data);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +32,7 @@ export const ProductViewHeader = () => {
 
   const handleOnClick = () => {
     axios
-      .delete("http://localhost:3030/products/delete", { id: id })
+      .post("http://localhost:3030/products/delete", { id: id })
       .then((res) => console.log(res));
   };
 

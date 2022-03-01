@@ -87,11 +87,11 @@ export const Sidebar = () => {
       sideBarActive.current.style.zIndex = "100";
       setNavbarActive(!navbarActive);
     }
-    if (sideBarHideActive) {
-      sideBarActive.current.style.display = "none";
-      setSideBarHideActive(!sideBarHideActive);
-    }
-  }, [navbarActive, sideBarHideActive]);
+    // if (sideBarHideActive) {
+    //   sideBarActive.current.style.display = "none";
+    //   setSideBarHideActive(!sideBarHideActive);
+    // }
+  }, [navbarActive]);
 
   return (
     <div

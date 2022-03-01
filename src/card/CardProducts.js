@@ -15,7 +15,7 @@ export const CardProducts = () => {
 
   let productosFiltrados;
 
-  if (filteredText === "") {
+  if (filteredText == "") {
     productosFiltrados = products;
   } else {
     productosFiltrados = products.filter((products) =>
