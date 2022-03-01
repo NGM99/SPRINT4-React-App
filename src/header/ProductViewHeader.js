@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { DarkMode } from "../context/DarkModeContext";
@@ -28,6 +29,12 @@ export const ProductViewHeader = () => {
     getProductById(idProduct);
   }, []);
 
+  const handleOnClick = () => {
+    axios
+      .delete("http://localhost:3030/products/delete", { id: id })
+      .then((res) => console.log(res));
+  };
+
   const { darkMode } = useContext(DarkMode);
   return (
     <div className='header-container-view'>
@@ -40,13 +47,21 @@ export const ProductViewHeader = () => {
         </p>
         <p className={darkMode ? "header__text-dark" : "header__text"}>{id}</p>
       </div>
-      <form>
+      <Link
+        to={"/"}
+        onClick={handleOnClick}
+        className={darkMode ? "button-agregado-dark" : "button-agregado"}
+      >
+        Eliminar
+      </Link>
+      {/* <form>
         <input
           type='submit'
           className={darkMode ? "button-agregado-dark" : "button-agregado"}
           value='Eliminar'
+          onSubmit={handleDeleteProduct}
         />
-      </form>
+      </form> */}
     </div>
   );
 };
