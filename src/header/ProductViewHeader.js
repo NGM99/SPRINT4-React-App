@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { DarkMode } from "../context/DarkModeContext";
 import { useParams } from "react-router-dom";
+import { IconMenu } from "../components/IconMenu";
 import { ProductById } from "../context/ProductByIdViewContext";
 import axios from "axios";
 const flechaDerechaIcon = <FontAwesomeIcon icon={faAngleRight} />;
@@ -38,6 +39,7 @@ export const ProductViewHeader = () => {
   const { darkMode } = useContext(DarkMode);
   return (
     <div className='header-container-view'>
+      <IconMenu />
       <div className='header-container-new'>
         <p className={darkMode ? "header__text-dark" : "header__text"}>
           Productos

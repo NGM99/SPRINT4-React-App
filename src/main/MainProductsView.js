@@ -1,24 +1,25 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import imageStore from "../assets/img/ProfilePic.png";
+import { useParams } from "react-router-dom";
 import notFound from "../assets/img/not-found.png";
 import { DarkMode } from "../context/DarkModeContext";
+import { ImageCard } from "../components/ImageCard";
 import { ProductById } from "../context/ProductByIdViewContext";
 import "../css/main.css";
 import axios from "axios";
 
 export const MainProductsView = () => {
-  const { productObject } = useContext(ProductById);
+  const [productObject, setProductObject] = useState({});
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
+  const [arrayImages, setArrayImages] = useState([]);
 
-  console.log(productObject);
+  // console.log(productObject);
 
-  // useEffect(() => {
-  //   nombreInput.current.value = productObject.title;
-  //   valorInput.current.value = productObject.price;
-  //   stockInput.current.value = productObject.stock;
-  //   descripcionInput.current.value = productObject.description;
-  // }, []);
+  const handleAddImagesInput = () => {
+    setArrayImages([productObject.gallery]);
+    console.log(arrayImages);
+  };
 
   let nombreInput = useRef();
   let valorInput = useRef();
@@ -30,19 +31,21 @@ export const MainProductsView = () => {
   let stocks;
   let descripcion;
 
-  // const getProductById = async (id) => {
-  //   try {
-  //     await axios
-  //       .get("http://localhost:3030/productos/" + id)
-  //       .then((res) => setfirst(res.data));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const idProduct = useParams().id;
 
-  // useEffect(() => {
-  //   getProductById(id);
-  // }, []);
+  const getProductById = async (id) => {
+    try {
+      await axios
+        .get("http://localhost:3030/productos/" + id)
+        .then((res) => setProductObject(res.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductById(idProduct);
+  }, []);
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -93,21 +96,53 @@ export const MainProductsView = () => {
         />
         <div className='product-container-info'>
           <div>
-            <p className='product-main-title'>{productObject.title}</p>
+            <p
+              className={
+                darkMode
+                  ? "product-main-title text-white"
+                  : "product-main-title"
+              }
+            >
+              {productObject.title}
+            </p>
           </div>
           <div className='details-container-info'>
             <div className='container-detail-box box-text'>
-              <p className='details-text-product'>{productObject.price}</p>
-              <p className='details-subtext-product'>PUNTOS SUPERCLUB</p>
+              <p
+                className={
+                  darkMode
+                    ? "details-text-product text-white"
+                    : "details-text-product"
+                }
+              >
+                {productObject.price}
+              </p>
+              <p
+                className={
+                  darkMode
+                    ? "details-subtext-product text-white"
+                    : "details-subtext-product"
+                }
+              >
+                PUNTOS SUPERCLUB
+              </p>
             </div>
             <div className='container-detail-box box-text'>
-              <p className='details-text-product'>{productObject.stock}</p>
+              <p
+                className={
+                  darkMode
+                    ? "details-text-product text-white"
+                    : "details-text-product"
+                }
+              >
+                {productObject.stock}
+              </p>
               <p className='details-subtext-product'>STOCK DISPONIBLE</p>
             </div>
             <div className='container-detail-box content-box-view'>
               <div className='box-store-profile'>
                 <img src={imageStore} className='img-store-profile' />
-                <p className=''>Olivia Store</p>
+                <p className={darkMode ? "text-white" : ""}>Olivia Store</p>
               </div>
             </div>
           </div>
@@ -216,12 +251,20 @@ export const MainProductsView = () => {
                 darkMode ? "input-new-product-dark" : "input-new-product"
               }
               placeholder='Input Value'
+              onChange={handleAddImagesInput}
             />
           </div>
           <label className={darkMode ? "label-text-dark" : "label-text"}>
             Imagenes actuales
           </label>
-          <div>{/* Galeria de imagenes */}</div>
+
+          {productObject.gallery == null ? (
+            <p>No hay imagenes, ingrese una URL</p>
+          ) : (
+            productObject.gallery.map((element) => (
+              <ImageCard element={element} />
+            ))
+          )}
         </div>
         <div className='container-buttons-view'>
           <button
@@ -234,7 +277,7 @@ export const MainProductsView = () => {
             onClick={handleEditar}
             className={darkMode ? "button-agregado-dark" : "button-agregado"}
           >
-            Editar producto
+            Guardar
           </button>
         </div>
       </form>

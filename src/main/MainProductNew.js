@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState, useContext, useRef, useEffect } from "react";
+import { ImageCard } from "../components/ImageCard";
 import { DarkMode } from "../context/DarkModeContext";
 import "../css/main.css";
 
 export const MainProductNew = () => {
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
+  const [arrayImages, setArrayImages] = useState([]);
 
   let nombreInput = useRef();
   let valorInput = useRef();
@@ -38,6 +40,8 @@ export const MainProductNew = () => {
         valor,
         stocks,
         descripcion,
+        img: arrayImages[0],
+        gallery: arrayImages,
         id,
       })
       .then((res) => {
@@ -67,6 +71,25 @@ export const MainProductNew = () => {
     if (stock >= 2) {
       setStock(() => stock - 1);
     }
+  };
+
+  const inputUrls = useRef();
+  const arrayss = [];
+
+  const handleAddImagesInput = (e) => {
+    e.preventDefault();
+    let variable = inputUrls.current.value;
+    arrayss.push(variable);
+
+    let objeto = { img: arrayss[0], gallery: arrayss };
+
+    console.log(objeto);
+
+    setArrayImages([...arrayImages, arrayss]);
+
+    setTimeout(() => {
+      inputUrls.current.value = "";
+    }, 2000);
   };
 
   return (
@@ -170,16 +193,22 @@ export const MainProductNew = () => {
             </label>
             <input
               type='text'
+              ref={inputUrls}
               className={
                 darkMode ? "input-new-product-dark" : "input-new-product"
               }
               placeholder='Input Value'
+              onChange={handleAddImagesInput}
             />
           </div>
           <label className={darkMode ? "label-text-dark" : "label-text"}>
             Imagenes actuales
           </label>
-          <div>{/* Galeria de imagenes */}</div>
+          {arrayImages == null ? (
+            <p>No hay imagenes, ingrese una URL</p>
+          ) : (
+            arrayImages.map((element) => <ImageCard element={element} />)
+          )}
         </div>
         <div className='container-button-agregar'>
           <input

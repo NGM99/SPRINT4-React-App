@@ -5,6 +5,7 @@ import { Products } from "../context/ProductsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { DarkMode } from "../context/DarkModeContext";
+import { IconMenu } from "../components/IconMenu";
 const lupaIcon = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
 export const ProductsListHeader = () => {
@@ -20,6 +21,7 @@ export const ProductsListHeader = () => {
   return (
     <>
       <div className='header--products-container'>
+        <IconMenu />
         <div className='header-container-text'>
           <p className={darkMode ? "header__text-dark" : "header__text"}>
             Productos

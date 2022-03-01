@@ -12,7 +12,7 @@ export const Stores = () => {
         <h1 className={darkMode ? "title-404" : ""}>
           Error 404: página no encontrada
         </h1>
-        <img src={error404} />
+        <img src={error404} className='img-error' />
       </div>
     </div>
   );

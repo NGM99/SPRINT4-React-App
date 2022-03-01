@@ -8,7 +8,14 @@ import "../../css/main.css";
 import "../../App.css";
 
 export const Home = () => {
-  const { darkMode } = useContext(DarkMode);
+  const { darkMode, sideBarHideActive, setSideBarHideActive } =
+    useContext(DarkMode);
+  const quitSideBar = (e) => {
+    e.preventDefault();
+
+    setSideBarHideActive(!sideBarHideActive);
+    console.log(sideBarHideActive);
+  };
   return (
     <div className={darkMode ? "main-container-dark" : "main-container"}>
       <Header>

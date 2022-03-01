@@ -16,29 +16,48 @@ const productsIcon = <FontAwesomeIcon icon={faBox} />;
 const storeIcon = <FontAwesomeIcon icon={faShop} />;
 
 export const Sidebar = () => {
-  const { darkMode, setDarkMode, navbarActive, setNavbarActive } =
-    useContext(DarkMode);
+  const {
+    darkMode,
+    setDarkMode,
+    navbarActive,
+    sideBarHideActive,
+    setNavbarActive,
+    setSideBarHideActive,
+  } = useContext(DarkMode);
   const [text, setText] = useState("Cambiar a modo oscuro");
   const [backgroundHome, setBackgroundHome] = useState(true);
   const [backgroundProducts, setBackgroundProducts] = useState(false);
   const [backgroundStore, setBackgroundStore] = useState(false);
 
   const handleClickChangeBackgroundColorHomeNav = () => {
-    backgroundHome ? setBackgroundHome(true) : setBackgroundHome(true);
+    console.log(navLinkHome);
+    if (backgroundHome) {
+      setBackgroundHome(true);
+    } else {
+      setBackgroundHome(true);
+    }
+
     setBackgroundProducts(false);
     setBackgroundStore(false);
   };
 
-  const handleClickChangeBackgroundColorProductsNav = () => {
+  const handleClickChangeBackgroundColorProductsNav = (e) => {
     backgroundProducts
       ? setBackgroundProducts(true)
       : setBackgroundProducts(true);
+
+    // if (darkMode) {
+    //   navLinkHome.current.className.toggle("textColorDark");
+    // } else {
+    // }
+
     setBackgroundHome(false);
     setBackgroundStore(false);
   };
 
   const handleClickChangeBackgroundColorStoresNav = () => {
     backgroundStore ? setBackgroundStore(true) : setBackgroundStore(true);
+
     setBackgroundHome(false);
     setBackgroundProducts(false);
   };
@@ -58,16 +77,27 @@ export const Sidebar = () => {
   };
 
   const sideBarActive = useRef();
+  const navLinkHome = useRef();
+  const navLinkProducts = useRef();
+  const navLinkStores = useRef();
 
   useEffect(() => {
     if (navbarActive) {
       sideBarActive.current.style.display = "flex";
       sideBarActive.current.style.zIndex = "100";
+      setNavbarActive(!navbarActive);
     }
-  }, [navbarActive]);
+    if (sideBarHideActive) {
+      sideBarActive.current.style.display = "none";
+      setSideBarHideActive(!sideBarHideActive);
+    }
+  }, [navbarActive, sideBarHideActive]);
 
   return (
-    <div className={darkMode ? "sideBarDark" : "sideBar"} ref={sideBarActive}>
+    <div
+      className={darkMode ? "sideBar bgDarkSidebar" : "sideBar"}
+      ref={sideBarActive}
+    >
       <div className='sideBar-topcontent'>
         <div className='sideBar__imgcontainer'>
           <img src={imglogo} className='imgcontainer__imglogo' />
@@ -87,23 +117,25 @@ export const Sidebar = () => {
                 <div className={"icon-container"}>
                   <i
                     className={
-                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                      darkMode ? "iconMenuNavegation" : "iconMenuNavegation"
                     }
                   >
                     {homeIcon}
                   </i>
                 </div>
                 <div>
-                  <Link
+                  <p
                     to={"/home"}
-                    className={darkMode ? "nav-link-dark" : "nav-link"}
+                    ref={navLinkHome}
+                    className={darkMode ? "nav-link" : "nav-link"}
                   >
                     Home
-                  </Link>
+                  </p>
                 </div>
               </NavLink>
               <NavLink
                 onClick={handleClickChangeBackgroundColorProductsNav}
+                ref={navLinkProducts}
                 className={
                   backgroundProducts
                     ? "side-nav-container bgColorActive"
@@ -114,23 +146,24 @@ export const Sidebar = () => {
                 <div className='icon-container'>
                   <i
                     className={
-                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                      darkMode ? "iconMenuNavegation" : "iconMenuNavegation"
                     }
                   >
                     {productsIcon}
                   </i>
                 </div>
                 <div>
-                  <Link
+                  <p
                     to={"/products"}
-                    className={darkMode ? "nav-link-dark" : "nav-link"}
+                    className={darkMode ? "nav-link" : "nav-link"}
                   >
                     Productos
-                  </Link>
+                  </p>
                 </div>
               </NavLink>
               <NavLink
                 onClick={handleClickChangeBackgroundColorStoresNav}
+                ref={navLinkStores}
                 className={
                   backgroundStore
                     ? "side-nav-container bgColorActive"
@@ -141,19 +174,19 @@ export const Sidebar = () => {
                 <div className='icon-container'>
                   <i
                     className={
-                      darkMode ? "icon-container-dark" : "iconMenuNavegation"
+                      darkMode ? "iconMenuNavegation" : "iconMenuNavegation"
                     }
                   >
                     {storeIcon}
                   </i>
                 </div>
                 <div>
-                  <Link
+                  <p
                     to={"/stores"}
-                    className={darkMode ? "nav-link-dark" : "nav-link"}
+                    className={darkMode ? "nav-link" : "nav-link"}
                   >
                     Tiendas
-                  </Link>
+                  </p>
                 </div>
               </NavLink>
             </ul>
@@ -162,7 +195,9 @@ export const Sidebar = () => {
         <div className='sidebar__containerbutton'>
           <button
             onClick={handleOnClickDarkMode}
-            className={darkMode ? "darkModeButton-dark" : "darkModeButton"}
+            className={
+              darkMode ? "darkModeButton darkModeButton-dark" : "darkModeButton"
+            }
           >
             {text}
           </button>
@@ -181,7 +216,7 @@ export const Sidebar = () => {
           <div className='user-container'>
             <div className='sidebar__containeruser'>
               <img className='container-user__imgUser' src={imguser} />
-              <p className={darkMode ? "text-user-dark" : ""}>Olivia</p>
+              <p className={darkMode ? "textBgDark" : ""}>Olivia</p>
             </div>
           </div>
         </Link>

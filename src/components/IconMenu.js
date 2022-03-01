@@ -6,18 +6,18 @@ import "../App.css";
 const faBarsIcon = <FontAwesomeIcon icon={faBars} />;
 
 export const IconMenu = () => {
-  const { navbarActive, setNavbarActive } = useContext(DarkMode);
+  const { navbarActive, setNavbarActive, darkMode } = useContext(DarkMode);
 
-  const handleOnClick = (e) => {
-    console.log(e);
+  const handleOnClick = () => {
     setNavbarActive(!navbarActive);
     console.log(navbarActive);
   };
 
-  //console.log(navbarActive);
-
   return (
-    <i className='icon-menu' onClick={handleOnClick}>
+    <i
+      className={darkMode ? "icon-menu icon-white" : "icon-menu"}
+      onClick={handleOnClick}
+    >
       {faBarsIcon}
     </i>
   );
