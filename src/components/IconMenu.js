@@ -8,7 +8,11 @@ const faBarsIcon = <FontAwesomeIcon icon={faBars} />;
 export const IconMenu = () => {
   const { navbarActive, setNavbarActive } = useContext(DarkMode);
 
-  const handleOnClick = () => setNavbarActive(!navbarActive);
+  const handleOnClick = (e) => {
+    console.log(e);
+    setNavbarActive(!navbarActive);
+    console.log(navbarActive);
+  };
 
   //console.log(navbarActive);
 

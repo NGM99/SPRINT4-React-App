@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./sidebar.css";
 import "../../App.css";
 import imglogo from "../../assets/img/miEcommerce.png";
@@ -57,8 +57,17 @@ export const Sidebar = () => {
       : setText("Cambiar a modo claro");
   };
 
+  const sideBarActive = useRef();
+
+  useEffect(() => {
+    if (navbarActive) {
+      sideBarActive.current.style.display = "flex";
+      sideBarActive.current.style.zIndex = "100";
+    }
+  }, [navbarActive]);
+
   return (
-    <div className={darkMode ? "sideBarDark" : "sideBar"}>
+    <div className={darkMode ? "sideBarDark" : "sideBar"} ref={sideBarActive}>
       <div className='sideBar-topcontent'>
         <div className='sideBar__imgcontainer'>
           <img src={imglogo} className='imgcontainer__imglogo' />

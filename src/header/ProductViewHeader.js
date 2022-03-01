@@ -54,14 +54,6 @@ export const ProductViewHeader = () => {
       >
         Eliminar
       </Link>
-      {/* <form>
-        <input
-          type='submit'
-          className={darkMode ? "button-agregado-dark" : "button-agregado"}
-          value='Eliminar'
-          onSubmit={handleDeleteProduct}
-        />
-      </form> */}
     </div>
   );
 };
