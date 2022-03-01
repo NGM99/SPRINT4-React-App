@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { DarkMode } from "../context/DarkModeContext";
 import "../css/main.css";
 
 export const MainProductNew = () => {
   const [stock, setStock] = useState(1);
   const { darkMode } = useContext(DarkMode);
-  const [object, setObject] = useState({ nom: "", val: "", sto: "", des: "" });
 
   let nombreInput = useRef();
   let valorInput = useRef();
@@ -18,12 +17,36 @@ export const MainProductNew = () => {
   let stocks;
   let descripcion;
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  const makeRandomId = (length) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  };
 
-    await axios
-      .post("http://localhost:3030/product/new", { nombre: "Alan" })
-      .then((res) => console.log(res))
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const id = makeRandomId(22);
+    axios
+      .post("http://localhost:3030/product/new", {
+        nombre,
+        valor,
+        stocks,
+        descripcion,
+        id,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Se ha creado un nuevo producto");
+        } else {
+          alert("Ha ocurrido un error");
+        }
+      })
       .catch((err) => console.log(err));
   };
 
@@ -45,8 +68,6 @@ export const MainProductNew = () => {
       setStock(() => stock - 1);
     }
   };
-
-  const handleSubmit = (e) => e.preventDefault();
 
   return (
     <div className='mainHome'>
@@ -162,7 +183,7 @@ export const MainProductNew = () => {
         </div>
         <div className='container-button-agregar'>
           <input
-            onSubmit={handleSubmit}
+            onSubmit={handleOnSubmit}
             type='submit'
             className={darkMode ? "button-agregado-dark" : "button-agregado"}
             value='Agregar producto'
